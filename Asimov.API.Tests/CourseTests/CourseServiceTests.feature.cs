@@ -40,8 +40,8 @@ namespace Asimov.API.Tests.CourseTests
         public static void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "CourseTests", "CourseServiceTests", "\tAs a Developer\r\n\tI want to add new Course through API\r\n\tSo that It can be availa" +
-                    "ble for applications.", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "CourseTests", "CourseServiceTests", "As a Developer\r\nI want to add new Course through API\r\nSo that It can be available" +
+                    " for applications.", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -79,9 +79,9 @@ namespace Asimov.API.Tests.CourseTests
         public virtual void FeatureBackground()
         {
 #line 6
- #line hidden
+    #line hidden
 #line 7
-  testRunner.Given("the Endpoint https://localhost:5001/api/v1/courses is available", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+        testRunner.Given("the Endpoint https://localhost:5001/api/v1/courses is available", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
         }
         
@@ -101,7 +101,7 @@ namespace Asimov.API.Tests.CourseTests
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add Course", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 10
-this.ScenarioInitialize(scenarioInfo);
+    this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
             bool isFeatureIgnored = default(bool);
@@ -121,32 +121,40 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 6
- this.FeatureBackground();
+    this.FeatureBackground();
 #line hidden
                 TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Id",
                             "Name",
                             "Description",
+                            "Grade",
                             "State"});
                 table6.AddRow(new string[] {
+                            "1",
                             "Algebra",
                             "A branch of Mathematics...",
-                            "true"});
+                            "1ro",
+                            "false"});
 #line 11
- testRunner.When("A Post Request is sent to Course", ((string)(null)), table6, "When ");
+        testRunner.When("A Post Request is sent to Course", ((string)(null)), table6, "When ");
 #line hidden
 #line 14
-  testRunner.Then("A Response with Status 200 is received in Course", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+        testRunner.Then("A Response with Status 200 is received in Course", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
                 TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Id",
                             "Name",
                             "Description",
+                            "Grade",
                             "State"});
                 table7.AddRow(new string[] {
+                            "1",
                             "Algebra",
                             "A branch of Mathematics...",
-                            "true"});
+                            "1ro",
+                            "false"});
 #line 15
-  testRunner.And("A Course Resource is included in Response Body", ((string)(null)), table7, "And ");
+        testRunner.And("A Course Resource is included in Response Body", ((string)(null)), table7, "And ");
 #line hidden
             }
             this.ScenarioCleanup();

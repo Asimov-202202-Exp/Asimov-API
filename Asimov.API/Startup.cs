@@ -69,7 +69,7 @@ namespace Asimov.API
                 c.SwaggerDoc("v1", new OpenApiInfo {Title = "Asimov.API", Version = "v1"});
             });
 
-            //services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
+            services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
 
             services.AddDbContext<AppDbContext>(option =>
             {
