@@ -90,8 +90,6 @@ namespace Asimov.API
             services.AddScoped<ICompetenceService, CompetenceService>();
             services.AddScoped<ITeacherCourseRepository, TeacherCourseRepository>();
             services.AddScoped<ITeacherCourseService, TeacherCourseService>();
-            services.AddScoped<ICourseCompetenceRepository, CourseCompetenceRepository>();
-            services.AddScoped<ICourseCompetenceService, CourseCompetenceService>();
             services.AddScoped<IJwtHandler, JwtHandler>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 

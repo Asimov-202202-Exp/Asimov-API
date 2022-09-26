@@ -9,6 +9,9 @@ namespace Asimov.API.Competences.Domain.Repositories
         Task<IEnumerable<Competence>> ListAsync();
         Task AddAsync(Competence competence);
         Task<Competence> FindByIdAsync(int id);
+        Task<IEnumerable<Competence>> FindByCourseId(int courseId);
+        Task<Competence> FindByTitleAsync(string title);
+        public bool ExistByTitle(string title);
         void Update(Competence competence);
         void Remove(Competence competence);
     }

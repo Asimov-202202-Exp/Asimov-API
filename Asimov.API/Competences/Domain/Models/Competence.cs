@@ -9,6 +9,7 @@ namespace Asimov.API.Competences.Domain.Models
         public string Title { get; set; }
         public string Description { get; set; }
 
-        public IList<CourseCompetence> CourseCompetences { get; set; } = new List<CourseCompetence>();
+        public int CourseId { get; set; }
+        public Course Course { get; set; }
     }
 }

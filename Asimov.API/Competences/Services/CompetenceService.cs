@@ -5,6 +5,8 @@ using Asimov.API.Competences.Domain.Models;
 using Asimov.API.Competences.Domain.Repositories;
 using Asimov.API.Competences.Domain.Services;
 using Asimov.API.Competences.Domain.Services.Communication;
+using Asimov.API.Courses.Domain.Repositories;
+using Asimov.API.Security.Exceptions;
 using Asimov.API.Shared.Domain.Repositories;
 
 namespace Asimov.API.Competences.Services
@@ -12,12 +14,14 @@ namespace Asimov.API.Competences.Services
     public class CompetenceService : ICompetenceService
     {
         private readonly ICompetenceRepository _competenceRepository;
+        private readonly ICourseRepository _courseRepository;
         private readonly IUnitOfWork _unitOfWork;
 
-        public CompetenceService(ICompetenceRepository competenceRepository, IUnitOfWork unitOfWork)
+        public CompetenceService(ICompetenceRepository competenceRepository, IUnitOfWork unitOfWork, ICourseRepository courseRepository)
         {
             _competenceRepository = competenceRepository;
             _unitOfWork = unitOfWork;
+            _courseRepository = courseRepository;
         }
 
         public async Task<IEnumerable<Competence>> ListAsync()
@@ -25,8 +29,22 @@ namespace Asimov.API.Competences.Services
             return await _competenceRepository.ListAsync();
         }
 
+        public async Task<IEnumerable<Competence>> ListByCourseIdAsync(int courseId)
+        {
+            return await _competenceRepository.FindByCourseId(courseId);
+        }
+
         public async Task<CompetenceResponse> SaveAsync(Competence competence)
         {
+            var existingCourse = _courseRepository.FindByIdAsync(competence.CourseId);
+
+            if (existingCourse.Result == null)
+                return new CompetenceResponse("Invalid Course");
+            
+            if (_competenceRepository.ExistByTitle(competence.Title))
+                throw new AppException
+                    ($"Competence {competence.Title} belongs to another Course");
+            
             try
             {
                 await _competenceRepository.AddAsync(competence);
@@ -46,6 +64,12 @@ namespace Asimov.API.Competences.Services
 
             if (existingCompetence == null)
                 return new CompetenceResponse("Competence not found");
+            
+            var existingCourse = _courseRepository.FindByIdAsync(competence.CourseId);
+
+            if (existingCourse.Result == null)
+                return new CompetenceResponse("Invalid Course");
+            
             existingCompetence.Title = competence.Title;
             existingCompetence.Description = competence.Description;
 
