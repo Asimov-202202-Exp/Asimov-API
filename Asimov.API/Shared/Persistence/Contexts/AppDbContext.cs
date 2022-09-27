@@ -1,8 +1,8 @@
-﻿using Asimov.API.Announcements.Domain.Models;
+﻿using Asimov.API.Activities.Domain.Models;
+using Asimov.API.Announcements.Domain.Models;
 using Asimov.API.Competences.Domain.Models;
 using Asimov.API.Courses.Domain.Models;
 using Asimov.API.Directors.Domain.Models;
-using Asimov.API.Items.Domain.Models;
 using Asimov.API.Shared.Extensions;
 using Asimov.API.Teachers.Domain.Models;
 using Microsoft.EntityFrameworkCore;
@@ -17,7 +17,7 @@ namespace Asimov.API.Shared.Persistence.Contexts
         public DbSet<Announcement> Announcements { get; set; }
         public DbSet<Teacher> Teachers { get; set; }
         public DbSet<Course> Courses { get; set; }
-        public DbSet<Item> Items { get; set; }
+        public DbSet<Activity> Activities { get; set; }
         public DbSet<TeacherCourse> TeacherCourses { get; set; }
         public DbSet<Competence> Competences { get; set; }
         private readonly IConfiguration _configuration;
@@ -169,31 +169,31 @@ namespace Asimov.API.Shared.Persistence.Contexts
             );
             
             
-            builder.Entity<Item>().ToTable("Items");
-            builder.Entity<Item>().HasKey(p => p.Id);
-            builder.Entity<Item>().Property(p => p.Id).IsRequired().ValueGeneratedOnAdd();
-            builder.Entity<Item>().Property(p => p.Name).IsRequired().HasMaxLength(30);
-            builder.Entity<Item>().Property(p => p.Value).IsRequired();
-            builder.Entity<Item>().Property(p => p.State).IsRequired();
+            builder.Entity<Activity>().ToTable("Items");
+            builder.Entity<Activity>().HasKey(p => p.Id);
+            builder.Entity<Activity>().Property(p => p.Id).IsRequired().ValueGeneratedOnAdd();
+            builder.Entity<Activity>().Property(p => p.Name).IsRequired().HasMaxLength(30);
+            builder.Entity<Activity>().Property(p => p.Value).IsRequired();
+            builder.Entity<Activity>().Property(p => p.State).IsRequired();
             
-            builder.Entity<Item>().HasData(
-                new Item {Id = 1, Name = "Video", Value = "https://www.youtube.com/embed/LwCRRUa8yTU", State = false, CourseId = 1},
-                new Item {Id = 2, Name = "Documentation", Value = "Today we start with the theorem of...", State = false, CourseId = 1},
-                new Item {Id = 3, Name = "Video", Value = "https://www.youtube.com/embed/Wd9dOIlTWCc", State = false, CourseId = 1},
-                new Item {Id = 4, Name = "Documentation", Value = "Today we start with the theorem of...", State = false, CourseId = 2},
-                new Item {Id = 5, Name = "Video", Value = "https://www.youtube.com/embed/LwCRRUa8yTU", State = false, CourseId = 2},
-                new Item {Id = 6, Name = "Documentation", Value = "Today we start with the theorem of...", State = false, CourseId = 3},
-                new Item {Id = 7, Name = "Video", Value = "https://www.youtube.com/embed/LwCRRUa8yTU", State = false, CourseId = 3},
-                new Item {Id = 8, Name = "Documentation", Value = "Today we start with the theorem of...", State = false, CourseId = 4},
-                new Item {Id = 9, Name = "Video", Value = "https://www.youtube.com/embed/LwCRRUa8yTU", State = false, CourseId = 4},
-                new Item {Id = 10, Name = "Documentation", Value = "Today we start with the theorem of...", State = false, CourseId = 5},
-                new Item {Id = 11, Name = "Video", Value = "https://www.youtube.com/embed/LwCRRUa8yTU", State = false, CourseId = 5},
-                new Item {Id = 12, Name = "Documentation", Value = "Today we start with the theorem of...", State = false, CourseId = 6},
-                new Item {Id = 13, Name = "Video", Value = "https://www.youtube.com/embed/LwCRRUa8yTU", State = false, CourseId = 6},
-                new Item {Id = 14, Name = "Documentation", Value = "Today we start with the theorem of...", State = false, CourseId = 7},
-                new Item {Id = 15, Name = "Video", Value = "https://www.youtube.com/embed/LwCRRUa8yTU", State = false, CourseId = 7},
-                new Item {Id = 16, Name = "Documentation", Value = "Today we start with the theorem of...", State = false, CourseId = 8},
-                new Item {Id = 17, Name = "Video", Value = "https://www.youtube.com/embed/LwCRRUa8yTU", State = false, CourseId = 8}
+            builder.Entity<Activity>().HasData(
+                new Activity {Id = 1, Name = "Video", Value = "https://www.youtube.com/embed/LwCRRUa8yTU", State = false, CourseId = 1},
+                new Activity {Id = 2, Name = "Documentation", Value = "Today we start with the theorem of...", State = false, CourseId = 1},
+                new Activity {Id = 3, Name = "Video", Value = "https://www.youtube.com/embed/Wd9dOIlTWCc", State = false, CourseId = 1},
+                new Activity {Id = 4, Name = "Documentation", Value = "Today we start with the theorem of...", State = false, CourseId = 2},
+                new Activity {Id = 5, Name = "Video", Value = "https://www.youtube.com/embed/LwCRRUa8yTU", State = false, CourseId = 2},
+                new Activity {Id = 6, Name = "Documentation", Value = "Today we start with the theorem of...", State = false, CourseId = 3},
+                new Activity {Id = 7, Name = "Video", Value = "https://www.youtube.com/embed/LwCRRUa8yTU", State = false, CourseId = 3},
+                new Activity {Id = 8, Name = "Documentation", Value = "Today we start with the theorem of...", State = false, CourseId = 4},
+                new Activity {Id = 9, Name = "Video", Value = "https://www.youtube.com/embed/LwCRRUa8yTU", State = false, CourseId = 4},
+                new Activity {Id = 10, Name = "Documentation", Value = "Today we start with the theorem of...", State = false, CourseId = 5},
+                new Activity {Id = 11, Name = "Video", Value = "https://www.youtube.com/embed/LwCRRUa8yTU", State = false, CourseId = 5},
+                new Activity {Id = 12, Name = "Documentation", Value = "Today we start with the theorem of...", State = false, CourseId = 6},
+                new Activity {Id = 13, Name = "Video", Value = "https://www.youtube.com/embed/LwCRRUa8yTU", State = false, CourseId = 6},
+                new Activity {Id = 14, Name = "Documentation", Value = "Today we start with the theorem of...", State = false, CourseId = 7},
+                new Activity {Id = 15, Name = "Video", Value = "https://www.youtube.com/embed/LwCRRUa8yTU", State = false, CourseId = 7},
+                new Activity {Id = 16, Name = "Documentation", Value = "Today we start with the theorem of...", State = false, CourseId = 8},
+                new Activity {Id = 17, Name = "Video", Value = "https://www.youtube.com/embed/LwCRRUa8yTU", State = false, CourseId = 8}
             );
             
             builder.Entity<Competence>().ToTable("Competences");

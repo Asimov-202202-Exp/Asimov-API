@@ -5,8 +5,8 @@ using System.Net.Http;
 using System.Net.Mime;
 using System.Text;
 using System.Threading.Tasks;
+using Asimov.API.Activities.Resources;
 using Asimov.API.Courses.Resources;
-using Asimov.API.Items.Resources;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Newtonsoft.Json;
 using SpecFlow.Internal.Json;
@@ -25,7 +25,7 @@ namespace Asimov.API.Tests.FinishedItem
         private Uri BaseUri { get; set; }
         private Task<HttpResponseMessage> Response { get; set; }
         private CourseResource Course { get; set; }
-        private ItemResource Item { get; set; }
+        private ActivityResource Activity { get; set; }
         
         public FinishedItemStepDefinition(WebApplicationFactory<Startup> factory)
         {
@@ -55,18 +55,18 @@ namespace Asimov.API.Tests.FinishedItem
         public async void GivenAItemIsAlreadyStoredInTheTableItems(Table existingItemResource)
         {
             var itemUri = new Uri("https://localhost:5001/api/v1/items");
-            var resource = existingItemResource.CreateSet<SaveItemResource>().First();
+            var resource = existingItemResource.CreateSet<SaveActivityResource>().First();
             var content = new StringContent(resource.ToJson(), Encoding.UTF8, MediaTypeNames.Application.Json);
             var itemResponse = Client.PostAsync(itemUri, content);
             var itemResponseData = await itemResponse.Result.Content.ReadAsStringAsync();
-            var existingItem = JsonConvert.DeserializeObject<ItemResource>(itemResponseData);
-            Item = existingItem;
+            var existingItem = JsonConvert.DeserializeObject<ActivityResource>(itemResponseData);
+            Activity = existingItem;
         }
         
         [When(@"he clicks the complete button of an item (.*)")]
         public void WhenHeClicksTheCompleteButtonOfAnItem(int idItem, Table updateItemResource)
         {
-            var resource = updateItemResource.CreateSet<SaveItemResource>().First();
+            var resource = updateItemResource.CreateSet<SaveActivityResource>().First();
             var content = new StringContent(resource.ToJson(), Encoding.UTF8, MediaTypeNames.Application.Json);
             Response = Client.PutAsync(new Uri($"https://localhost:5001/api/v1/items/{idItem}"), content);
         }
@@ -82,9 +82,9 @@ namespace Asimov.API.Tests.FinishedItem
         [Then(@"the item will be completed and the progress of a course increases")]
         public async void ThenTheItemWillBeCompletedAndTheProgressOfACourseIncreases(Table expectedItemResource)
         {
-            var expectedResource = expectedItemResource.CreateSet<ItemResource>().First();
+            var expectedResource = expectedItemResource.CreateSet<ActivityResource>().First();
             var responseData = await Response.Result.Content.ReadAsStringAsync();
-            var resource = JsonConvert.DeserializeObject<ItemResource>(responseData);
+            var resource = JsonConvert.DeserializeObject<ActivityResource>(responseData);
             expectedResource.Id = resource.Id;
             var jsonExpectedResource = expectedResource.ToJson();
             var jsonActualResource = resource.ToJson();
