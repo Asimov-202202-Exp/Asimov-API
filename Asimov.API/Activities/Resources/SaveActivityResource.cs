@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Asimov.API.Items.Resources
+namespace Asimov.API.Activities.Resources
 {
-    public class SaveItemResource
+    public class SaveActivityResource
     {
         [Required]
         [MaxLength(30)]

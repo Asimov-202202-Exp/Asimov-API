@@ -1,6 +1,6 @@
-﻿namespace Asimov.API.Items.Resources
+﻿namespace Asimov.API.Activities.Resources
 {
-    public class ItemResource
+    public class ActivityResource
     {
         public int Id { get; set; }
         public string Name { get; set; }

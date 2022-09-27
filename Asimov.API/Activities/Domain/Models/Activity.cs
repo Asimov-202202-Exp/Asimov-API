@@ -1,8 +1,8 @@
 ﻿using Asimov.API.Courses.Domain.Models;
 
-namespace Asimov.API.Items.Domain.Models
+namespace Asimov.API.Activities.Domain.Models
 {
-    public class Item
+    public class Activity
     {
         public int Id { get; set; }
         

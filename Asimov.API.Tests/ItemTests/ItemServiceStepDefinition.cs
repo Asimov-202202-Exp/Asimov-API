@@ -5,8 +5,8 @@ using System.Net.Http;
 using System.Net.Mime;
 using System.Text;
 using System.Threading.Tasks;
+using Asimov.API.Activities.Resources;
 using Asimov.API.Courses.Resources;
-using Asimov.API.Items.Resources;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Newtonsoft.Json;
 using SpecFlow.Internal.Json;
@@ -24,7 +24,7 @@ namespace Asimov.API.Tests.ItemTests
         private Uri BaseUri { get; set; }
         private Task<HttpResponseMessage> Response { get; set; }
         private CourseResource Course { get; set; }
-        private ItemResource Item { get; set; }
+        private ActivityResource Activity { get; set; }
         
         public ItemServiceStepDefinition(WebApplicationFactory<Startup> factory)
         {
@@ -53,7 +53,7 @@ namespace Asimov.API.Tests.ItemTests
         [When(@"A Post Request is sent to Item")]
         public void WhenAPostRequestIsSentToItem(Table saveItemResource)
         {
-            var resource = saveItemResource.CreateSet<SaveItemResource>().First();
+            var resource = saveItemResource.CreateSet<SaveActivityResource>().First();
             var content = new StringContent(resource.ToJson(), Encoding.UTF8, MediaTypeNames.Application.Json);
             Response = Client.PostAsync(BaseUri, content);
         }
@@ -69,9 +69,9 @@ namespace Asimov.API.Tests.ItemTests
         [Then(@"A Item Resource is included in Response Body")]
         public async void ThenAItemResourceIsIncludedInResponseBody(Table expectedItemResource)
         {
-            var expectedResource = expectedItemResource.CreateSet<ItemResource>().First();
+            var expectedResource = expectedItemResource.CreateSet<ActivityResource>().First();
             var responseData = await Response.Result.Content.ReadAsStringAsync();
-            var resource = JsonConvert.DeserializeObject<ItemResource>(responseData);
+            var resource = JsonConvert.DeserializeObject<ActivityResource>(responseData);
             expectedResource.Id = resource.Id;
             var jsonExpectedResource = expectedResource.ToJson();
             var jsonActualResource = resource.ToJson();

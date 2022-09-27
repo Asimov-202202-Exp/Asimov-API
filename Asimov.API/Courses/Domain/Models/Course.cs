@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
+using Asimov.API.Activities.Domain.Models;
 using Asimov.API.Competences.Domain.Models;
-using Asimov.API.Items.Domain.Models;
 using Asimov.API.Teachers.Domain.Models;
 
 namespace Asimov.API.Courses.Domain.Models
@@ -18,7 +18,7 @@ namespace Asimov.API.Courses.Domain.Models
         public bool State { get; set; }
         
 
-        public IList<Item> Items { get; set; } = new List<Item>();
+        public IList<Activity> Items { get; set; } = new List<Activity>();
         public IList<TeacherCourse> TeacherCourses { get; set; } = new List<TeacherCourse>();
         public IList<Competence> Competences { get; set; } = new List<Competence>();
     }
