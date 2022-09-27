@@ -10,5 +10,8 @@ namespace Asimov.API.Units.Resources
 
         [MaxLength(500)]
         public string Description { get; set; }
+        
+        [Required]
+        public int CourseId { get; set; }
     }
 }

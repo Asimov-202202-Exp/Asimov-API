@@ -7,6 +7,7 @@ namespace Asimov.API.Units.Domain.Repositories
     public interface IUnitRepository
     {
         Task<IEnumerable<Unit>> ListAsync();
+        Task<IEnumerable<Unit>> FindByCourseId(int id);
         Task AddAsync(Unit unit);
         Task<Unit> FindByIdAsync(int id);
         void Update(Unit unit);

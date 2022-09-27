@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Asimov.API.Courses.Domain.Repositories;
 using Asimov.API.Shared.Domain.Repositories;
 using Asimov.API.Units.Domain.Models;
 using Asimov.API.Units.Domain.Repositories;
@@ -13,20 +14,32 @@ namespace Asimov.API.Units.Services
     {
         private readonly IUnitRepository _unitRepository;
         private readonly IUnitOfWork _unitOfWork;
+        private readonly ICourseRepository _courseRepository;
 
-        public UnitService(IUnitRepository unitRepository, IUnitOfWork unitOfWork)
+        public UnitService(IUnitRepository unitRepository, IUnitOfWork unitOfWork, ICourseRepository courseRepository)
         {
             _unitRepository = unitRepository;
             _unitOfWork = unitOfWork;
+            _courseRepository = courseRepository;
         }
 
         public async Task<IEnumerable<Unit>> ListAsync()
         {
             return await _unitRepository.ListAsync();   
         }
+        
+        public async Task<IEnumerable<Unit>> ListByCourseAsync(int courseId)
+        {
+            return await _unitRepository.FindByCourseId(courseId);
+        }
 
         public async Task<UnitResponse> SaveAsync(Unit unit)
         {
+            var existingCourse = await _courseRepository.FindByIdAsync(unit.CourseId);
+            if (existingCourse == null)
+            {
+                return new UnitResponse("Course not found.");
+            }
             try
             {
                 await _unitRepository.AddAsync(unit);
@@ -48,6 +61,7 @@ namespace Asimov.API.Units.Services
                 return new UnitResponse("Unit not found.");
             existingUnit.Title = unit.Title;
             existingUnit.Description = unit.Description;
+            existingUnit.CourseId = unit.CourseId;
 
             try
             {

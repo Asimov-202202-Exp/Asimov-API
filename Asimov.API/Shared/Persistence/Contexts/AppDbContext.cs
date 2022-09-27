@@ -147,8 +147,13 @@ namespace Asimov.API.Shared.Persistence.Contexts
             builder.Entity<Course>().Property(p => p.Description).IsRequired().HasMaxLength(500);
             builder.Entity<Course>().Property(p => p.Grade).IsRequired().HasMaxLength(10);
             builder.Entity<Course>().Property(p => p.State).IsRequired();
-            
+
             builder.Entity<Course>()
+                .HasMany(p => p.Units)
+                .WithOne(p => p.Course)
+                .HasForeignKey(p => p.CourseId);
+
+                builder.Entity<Course>()
                 .HasMany(p => p.Items)
                 .WithOne(p => p.Course)
                 .HasForeignKey(p => p.CourseId);
@@ -178,9 +183,9 @@ namespace Asimov.API.Shared.Persistence.Contexts
 
             builder.Entity<Unit>().HasData
             (
-                new Unit { Id = 1, Title = "Unit 1", Description = "In this unit we will learn about the course and the importance of these topics for our professional training."},
-                new Unit { Id = 2, Title = "Unit 2", Description = "In this unit we will learn how to implement a continuous delivery pipeline for a solution based on application software, the result of the evaluation and integration of current processes and tools for the processes of Construction, Verification and Validation, Software Delivery"},
-                new Unit { Id = 3, Title = "Unit 3", Description = "In this unit we will learn how to implement a continuous integration pipeline for a Software product solution, the result of the evaluation and integration of current processes and tools for the Construction, Verification and Validation processes."}
+                new Unit { Id = 1, Title = "Unit 1", Description = "In this unit we will learn about the course and the importance of these topics for our professional training.", CourseId = 1},
+                new Unit { Id = 2, Title = "Unit 2", Description = "In this unit we will learn how to implement a continuous delivery pipeline for a solution based on application software, the result of the evaluation and integration of current processes and tools for the processes of Construction, Verification and Validation, Software Delivery", CourseId = 1},
+                new Unit { Id = 3, Title = "Unit 3", Description = "In this unit we will learn how to implement a continuous integration pipeline for a Software product solution, the result of the evaluation and integration of current processes and tools for the Construction, Verification and Validation processes.", CourseId = 1}
             );
 
             builder.Entity<Activity>().ToTable("Items");
