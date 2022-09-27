@@ -5,6 +5,7 @@ using Asimov.API.Courses.Domain.Models;
 using Asimov.API.Directors.Domain.Models;
 using Asimov.API.Shared.Extensions;
 using Asimov.API.Teachers.Domain.Models;
+using Asimov.API.Units.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using BCryptNet = BCrypt.Net.BCrypt;
@@ -17,6 +18,7 @@ namespace Asimov.API.Shared.Persistence.Contexts
         public DbSet<Announcement> Announcements { get; set; }
         public DbSet<Teacher> Teachers { get; set; }
         public DbSet<Course> Courses { get; set; }
+        public DbSet<Unit> Units { get; set; }
         public DbSet<Activity> Activities { get; set; }
         public DbSet<TeacherCourse> TeacherCourses { get; set; }
         public DbSet<Competence> Competences { get; set; }
@@ -145,8 +147,13 @@ namespace Asimov.API.Shared.Persistence.Contexts
             builder.Entity<Course>().Property(p => p.Description).IsRequired().HasMaxLength(500);
             builder.Entity<Course>().Property(p => p.Grade).IsRequired().HasMaxLength(10);
             builder.Entity<Course>().Property(p => p.State).IsRequired();
-            
+
             builder.Entity<Course>()
+                .HasMany(p => p.Units)
+                .WithOne(p => p.Course)
+                .HasForeignKey(p => p.CourseId);
+
+                builder.Entity<Course>()
                 .HasMany(p => p.Items)
                 .WithOne(p => p.Course)
                 .HasForeignKey(p => p.CourseId);
@@ -168,7 +175,19 @@ namespace Asimov.API.Shared.Persistence.Contexts
                 new Course {Id = 9, Name = "chemistry", Description = "is the study of atoms and molecules and their interactions. The chemical studies reactions and physical changes that occur when creating or transformed compounds.", Grade = "2do", State = false}
             );
             
-            
+            builder.Entity<Unit>().ToTable("Units");
+            builder.Entity<Unit>().HasKey(p => p.Id);
+            builder.Entity<Unit>().Property(p => p.Id).IsRequired().ValueGeneratedOnAdd();
+            builder.Entity<Unit>().Property(p => p.Title).IsRequired().HasMaxLength(50);
+            builder.Entity<Unit>().Property(p => p.Description).HasMaxLength(500);
+
+            builder.Entity<Unit>().HasData
+            (
+                new Unit { Id = 1, Title = "Unit 1", Description = "In this unit we will learn about the course and the importance of these topics for our professional training.", CourseId = 1},
+                new Unit { Id = 2, Title = "Unit 2", Description = "In this unit we will learn how to implement a continuous delivery pipeline for a solution based on application software, the result of the evaluation and integration of current processes and tools for the processes of Construction, Verification and Validation, Software Delivery", CourseId = 1},
+                new Unit { Id = 3, Title = "Unit 3", Description = "In this unit we will learn how to implement a continuous integration pipeline for a Software product solution, the result of the evaluation and integration of current processes and tools for the Construction, Verification and Validation processes.", CourseId = 1}
+            );
+
             builder.Entity<Activity>().ToTable("Items");
             builder.Entity<Activity>().HasKey(p => p.Id);
             builder.Entity<Activity>().Property(p => p.Id).IsRequired().ValueGeneratedOnAdd();

@@ -11,6 +11,8 @@ using Asimov.API.Directors.Resources;
 using Asimov.API.Security.Domain.Services.Communication;
 using Asimov.API.Teachers.Domain.Models;
 using Asimov.API.Teachers.Resources;
+using Asimov.API.Units.Domain.Models;
+using Asimov.API.Units.Resources;
 using AutoMapper;
 
 namespace Asimov.API.Shared.Mapping
@@ -27,6 +29,7 @@ namespace Asimov.API.Shared.Mapping
             CreateMap<Competence, CompetenceResource>();
             CreateMap<Director, AuthenticateResponseDirector>();
             CreateMap<Teacher, AuthenticateResponseTeacher>();
+            CreateMap<Unit, UnitResource>();
         }
     }
 }
