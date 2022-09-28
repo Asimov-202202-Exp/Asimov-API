@@ -19,6 +19,16 @@ So that It can be available for applications.
 
     @activity-adding
     Scenario: Add a new Activity for a course
+      When A Post Activity request is sent
+        | Name                      | Value                                              | State | CourseId |
+        | French questions for home | The student must answer the following questions... | false | 2        |
+      Then A response with status 200 is received
+      And A Activity resource is included in response body
+        | Name                      | Value                                              | State | CourseId |
+        | French questions for home | The student must answer the following questions... | false | 2        |
+
+    @activity-adding
+    Scenario: Add the same Activity from one course to another
         When A Post Activity request is sent
           | Name                       | Value                                             | State | CourseId |
           | Algebra exercises for home | The student must solve the following exercises... | false | 2        |

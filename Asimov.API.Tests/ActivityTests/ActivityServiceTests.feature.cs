@@ -174,17 +174,83 @@ namespace Asimov.API.Tests.ActivityTests
                             "State",
                             "CourseId"});
                 table4.AddRow(new string[] {
+                            "French questions for home",
+                            "The student must answer the following questions...",
+                            "false",
+                            "2"});
+#line 22
+      testRunner.When("A Post Activity request is sent", ((string)(null)), table4, "When ");
+#line hidden
+#line 25
+      testRunner.Then("A response with status 200 is received", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+                TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Name",
+                            "Value",
+                            "State",
+                            "CourseId"});
+                table5.AddRow(new string[] {
+                            "French questions for home",
+                            "The student must answer the following questions...",
+                            "false",
+                            "2"});
+#line 26
+      testRunner.And("A Activity resource is included in response body", ((string)(null)), table5, "And ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [Xunit.SkippableFactAttribute(DisplayName="Add the same Activity from one course to another")]
+        [Xunit.TraitAttribute("FeatureTitle", "ActivityServiceTests")]
+        [Xunit.TraitAttribute("Description", "Add the same Activity from one course to another")]
+        [Xunit.TraitAttribute("Category", "activity-adding")]
+        public virtual void AddTheSameActivityFromOneCourseToAnother()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "activity-adding"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add the same Activity from one course to another", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 31
+    this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 6
+    this.FeatureBackground();
+#line hidden
+                TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Name",
+                            "Value",
+                            "State",
+                            "CourseId"});
+                table6.AddRow(new string[] {
                             "Algebra exercises for home",
                             "The student must solve the following exercises...",
                             "false",
                             "2"});
-#line 22
-        testRunner.When("A Post Activity request is sent", ((string)(null)), table4, "When ");
+#line 32
+        testRunner.When("A Post Activity request is sent", ((string)(null)), table6, "When ");
 #line hidden
-#line 25
+#line 35
         testRunner.Then("A response with status 400 is received", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 26
+#line 36
         testRunner.And("A message of \"This activity is already assigned to another course\" is included in" +
                         " response body", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden

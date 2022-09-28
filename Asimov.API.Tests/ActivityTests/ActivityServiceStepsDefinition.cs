@@ -91,6 +91,19 @@ namespace Asimov.API.Tests.ActivityTests
             var actualStatusCode = Response.Result.StatusCode.ToString();
             Assert.Equal(expectedStatusCode, actualStatusCode);
         }
+        
+        
+        [Then(@"A Activity resource is included in response body")]
+        public async void ThenAActivityResourceIsIncludedInResponseBody(Table expectedActivityResource)
+        {
+            var expectedResource = expectedActivityResource.CreateSet<ActivityResource>().First();
+            var responseData = await Response.Result.Content.ReadAsStringAsync();
+            var resource = JsonConvert.DeserializeObject<ActivityResource>(responseData);
+            expectedResource.Id = resource.Id;
+            var jsonExpectedResource = expectedResource.ToJson();
+            var jsonActualResource = resource.ToJson();
+            Assert.Equal(jsonExpectedResource, jsonActualResource);
+        }
 
         [Then(@"A message of ""(.*)"" is included in response body")]
         public async void ThenAMessageOfIsIncludedInResponseBody(string expectedMessage)
