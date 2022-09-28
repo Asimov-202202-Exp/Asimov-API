@@ -2,6 +2,7 @@
 using Asimov.API.Activities.Domain.Models;
 using Asimov.API.Competences.Domain.Models;
 using Asimov.API.Teachers.Domain.Models;
+using Asimov.API.Units.Domain.Models;
 
 namespace Asimov.API.Courses.Domain.Models
 {
@@ -17,7 +18,7 @@ namespace Asimov.API.Courses.Domain.Models
         public string Grade { get; set; }
         public bool State { get; set; }
         
-
+        public IList<Unit> Units { get; set; } = new List<Unit>();
         public IList<Activity> Items { get; set; } = new List<Activity>();
         public IList<TeacherCourse> TeacherCourses { get; set; } = new List<TeacherCourse>();
         public IList<Competence> Competences { get; set; } = new List<Competence>();
