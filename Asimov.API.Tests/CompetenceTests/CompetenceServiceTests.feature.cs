@@ -40,8 +40,8 @@ namespace Asimov.API.Tests.CompetenceTests
         public static void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "CompetenceTests", "CompetenceServiceTests", "    As a Developer\r\n    I want to add new Compentence through API\r\n    So that It" +
-                    " can be available for applications.", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "CompetenceTests", "CompetenceServiceTests", "    As a Developer\r\n    I want to add new Competence through API\r\n    So that It " +
+                    "can be available for applications.", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -83,6 +83,21 @@ namespace Asimov.API.Tests.CompetenceTests
 #line 7
         testRunner.Given("the Endpoint https://localhost:5001/api/v1/competences is available", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
+            TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Id",
+                        "Name",
+                        "Description",
+                        "Grade",
+                        "State"});
+            table4.AddRow(new string[] {
+                        "2",
+                        "Universal history",
+                        "The term World History gathering...",
+                        "2do",
+                        "false"});
+#line 8
+        testRunner.And("A Course is already stored", ((string)(null)), table4, "And ");
+#line hidden
         }
         
         void System.IDisposable.Dispose()
@@ -100,7 +115,7 @@ namespace Asimov.API.Tests.CompetenceTests
                     "competence-adding"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add Competence", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 10
+#line 13
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -123,26 +138,96 @@ this.ScenarioInitialize(scenarioInfo);
 #line 6
     this.FeatureBackground();
 #line hidden
-                TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
-                            "Title",
-                            "Description"});
-                table4.AddRow(new string[] {
-                            "Digital Competence",
-                            "The student is capable of..."});
-#line 11
-    testRunner.When("A Post Request to Competence is sent", ((string)(null)), table4, "When ");
-#line hidden
-#line 14
-    testRunner.Then("A Response with Status 200 is received in Competence", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
                 TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
                             "Title",
-                            "Description"});
+                            "Description",
+                            "CourseId"});
                 table5.AddRow(new string[] {
                             "Digital Competence",
-                            "The student is capable of..."});
-#line 15
-    testRunner.And("A Competence Resource is included in Response body", ((string)(null)), table5, "And ");
+                            "The student is capable of...",
+                            "1"});
+#line 14
+    testRunner.When("A Post Request to Competence is sent", ((string)(null)), table5, "When ");
+#line hidden
+#line 17
+    testRunner.Then("A Response with Status 200 is received in Competence", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+                TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Title",
+                            "Description",
+                            "CourseId"});
+                table6.AddRow(new string[] {
+                            "Digital Competence",
+                            "The student is capable of...",
+                            "1"});
+#line 18
+    testRunner.And("A Competence Resource is included in Response body", ((string)(null)), table6, "And ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [Xunit.SkippableFactAttribute(DisplayName="Add Competence that belongs to another Course")]
+        [Xunit.TraitAttribute("FeatureTitle", "CompetenceServiceTests")]
+        [Xunit.TraitAttribute("Description", "Add Competence that belongs to another Course")]
+        [Xunit.TraitAttribute("Category", "competence-adding")]
+        public virtual void AddCompetenceThatBelongsToAnotherCourse()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "competence-adding"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add Competence that belongs to another Course", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 23
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 6
+    this.FeatureBackground();
+#line hidden
+                TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Title",
+                            "Description",
+                            "CourseId"});
+                table7.AddRow(new string[] {
+                            "Communication Competence",
+                            "The student is capable of...",
+                            "2"});
+#line 24
+    testRunner.Given("A Competence is already assigned to a Course", ((string)(null)), table7, "Given ");
+#line hidden
+                TechTalk.SpecFlow.Table table8 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Title",
+                            "Description",
+                            "CourseId"});
+                table8.AddRow(new string[] {
+                            "Communication Competence",
+                            "The student is capable of...",
+                            "2"});
+#line 27
+    testRunner.When("A Post Request to Competence is sent", ((string)(null)), table8, "When ");
+#line hidden
+#line 30
+    testRunner.Then("A Response with Status 400 is received in Competence", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 31
+    testRunner.And("A message of \"This competence belongs to another Course\" is included in Response " +
+                        "body", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
