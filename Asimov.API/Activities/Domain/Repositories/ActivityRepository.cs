@@ -12,5 +12,6 @@ namespace Asimov.API.Activities.Domain.Repositories
         Task<IEnumerable<Activity>> FindByCourseId(int courseId);
         void Update(Activity activity);
         void Remove(Activity activity);
+        public bool ExistByValue(string value);
     }
 }

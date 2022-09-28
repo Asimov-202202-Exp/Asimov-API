@@ -6,6 +6,7 @@ using Asimov.API.Activities.Domain.Repositories;
 using Asimov.API.Activities.Domain.Services;
 using Asimov.API.Activities.Domain.Services.Communication;
 using Asimov.API.Courses.Domain.Repositories;
+using Asimov.API.Security.Exceptions;
 using Asimov.API.Shared.Domain.Repositories;
 
 namespace Asimov.API.Activities.Services
@@ -40,6 +41,10 @@ namespace Asimov.API.Activities.Services
 
             if (existingCourse.Result == null)
                 return new ActivityResponse("Invalid Course");
+            
+            if (_activityRepository.ExistByValue(activity.Value))
+                throw new AppException
+                    ("This activity is already assigned to another course");
 
             try
             {

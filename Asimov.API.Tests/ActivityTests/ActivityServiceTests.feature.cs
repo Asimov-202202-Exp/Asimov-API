@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace Asimov.API.Tests.FinishedItem
+namespace Asimov.API.Tests.ActivityTests
 {
     using TechTalk.SpecFlow;
     using System;
@@ -19,7 +19,7 @@ namespace Asimov.API.Tests.FinishedItem
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public partial class FinishedItemServiceTestsFeature : object, Xunit.IClassFixture<FinishedItemServiceTestsFeature.FixtureData>, System.IDisposable
+    public partial class ActivityServiceTestsFeature : object, Xunit.IClassFixture<ActivityServiceTestsFeature.FixtureData>, System.IDisposable
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
@@ -28,10 +28,10 @@ namespace Asimov.API.Tests.FinishedItem
         
         private Xunit.Abstractions.ITestOutputHelper _testOutputHelper;
         
-#line 1 "FinishedItemServiceTests.feature"
+#line 1 "ActivityServiceTests.feature"
 #line hidden
         
-        public FinishedItemServiceTestsFeature(FinishedItemServiceTestsFeature.FixtureData fixtureData, Asimov_API_Tests_XUnitAssemblyFixture assemblyFixture, Xunit.Abstractions.ITestOutputHelper testOutputHelper)
+        public ActivityServiceTestsFeature(ActivityServiceTestsFeature.FixtureData fixtureData, Asimov_API_Tests_XUnitAssemblyFixture assemblyFixture, Xunit.Abstractions.ITestOutputHelper testOutputHelper)
         {
             this._testOutputHelper = testOutputHelper;
             this.TestInitialize();
@@ -40,8 +40,8 @@ namespace Asimov.API.Tests.FinishedItem
         public static void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "FinishedItem", "FinishedItemServiceTests", "\tAs a Developer\r\n\tI want to complete an Item through API\r\n\tSo that It can be avai" +
-                    "lable for applications.", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "ActivityTests", "ActivityServiceTests", "As a Director\r\nI want to add a new Activity through API\r\nSo that It can be availa" +
+                    "ble for applications.", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -79,38 +79,54 @@ namespace Asimov.API.Tests.FinishedItem
         public virtual void FeatureBackground()
         {
 #line 6
- #line hidden
+    #line hidden
 #line 7
-  testRunner.Given("the Endpoint https://localhost:5001/api/v1/items is available for FinishedItemSer" +
-                    "viceTests", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+        testRunner.Given("the Endpoint https://localhost:5001/api/v1/activities is available", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-            TechTalk.SpecFlow.Table table11 = new TechTalk.SpecFlow.Table(new string[] {
+            TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
                         "Id",
                         "Name",
                         "Description",
+                        "Grade",
                         "State"});
-            table11.AddRow(new string[] {
+            table1.AddRow(new string[] {
                         "1",
                         "Algebra",
-                        "A branch of Mathematics...",
+                        "This is a new course",
+                        "2do",
                         "false"});
 #line 8
-  testRunner.Then("A Course is already stored in the table courses", ((string)(null)), table11, "Then ");
+        testRunner.And("A Course already exist", ((string)(null)), table1, "And ");
 #line hidden
-            TechTalk.SpecFlow.Table table12 = new TechTalk.SpecFlow.Table(new string[] {
+            TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Id",
+                        "Name",
+                        "Description",
+                        "Grade",
+                        "State"});
+            table2.AddRow(new string[] {
+                        "2",
+                        "French",
+                        "This is a new language course",
+                        "3do",
+                        "false"});
+#line 12
+        testRunner.And("A second Course already exist", ((string)(null)), table2, "And ");
+#line hidden
+            TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
                         "Id",
                         "Name",
                         "Value",
                         "State",
                         "CourseId"});
-            table12.AddRow(new string[] {
+            table3.AddRow(new string[] {
                         "1",
-                        "Video",
-                        "https://www.youtube.com/embed/LwCRRUa8yTU",
+                        "Algebra exercises for home",
+                        "The student must solve the following exercises...",
                         "false",
                         "1"});
-#line 11
-  testRunner.And("A Item is already stored in the table items", ((string)(null)), table12, "And ");
+#line 16
+        testRunner.And("A Activity already exist", ((string)(null)), table3, "And ");
 #line hidden
         }
         
@@ -119,18 +135,18 @@ namespace Asimov.API.Tests.FinishedItem
             this.TestTearDown();
         }
         
-        [Xunit.SkippableFactAttribute(DisplayName="Complete Item")]
-        [Xunit.TraitAttribute("FeatureTitle", "FinishedItemServiceTests")]
-        [Xunit.TraitAttribute("Description", "Complete Item")]
-        [Xunit.TraitAttribute("Category", "FinishedItem")]
-        public virtual void CompleteItem()
+        [Xunit.SkippableFactAttribute(DisplayName="Add a new Activity for a course")]
+        [Xunit.TraitAttribute("FeatureTitle", "ActivityServiceTests")]
+        [Xunit.TraitAttribute("Description", "Add a new Activity for a course")]
+        [Xunit.TraitAttribute("Category", "activity-adding")]
+        public virtual void AddANewActivityForACourse()
         {
             string[] tagsOfScenario = new string[] {
-                    "FinishedItem"};
+                    "activity-adding"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Complete Item", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 16
-this.ScenarioInitialize(scenarioInfo);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add a new Activity for a course", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 21
+    this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
             bool isFeatureIgnored = default(bool);
@@ -150,38 +166,27 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 6
- this.FeatureBackground();
+    this.FeatureBackground();
 #line hidden
-                TechTalk.SpecFlow.Table table13 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
                             "Name",
                             "Value",
                             "State",
                             "CourseId"});
-                table13.AddRow(new string[] {
-                            "Video",
-                            "https://www.youtube.com/embed/LwCRRUa8yTU",
-                            "true",
-                            "1"});
-#line 17
- testRunner.When("he clicks the complete button of an item 1", ((string)(null)), table13, "When ");
+                table4.AddRow(new string[] {
+                            "Algebra exercises for home",
+                            "The student must solve the following exercises...",
+                            "false",
+                            "2"});
+#line 22
+        testRunner.When("A Post Activity request is sent", ((string)(null)), table4, "When ");
 #line hidden
-#line 20
- testRunner.Then("A Response with Status 200 is received in Items", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 25
+        testRunner.Then("A response with status 400 is received", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-                TechTalk.SpecFlow.Table table14 = new TechTalk.SpecFlow.Table(new string[] {
-                            "Id",
-                            "Name",
-                            "Value",
-                            "State",
-                            "CourseId"});
-                table14.AddRow(new string[] {
-                            "1",
-                            "Video",
-                            "https://www.youtube.com/embed/LwCRRUa8yTU",
-                            "true",
-                            "1"});
-#line 21
- testRunner.And("the item will be completed and the progress of a course increases", ((string)(null)), table14, "And ");
+#line 26
+        testRunner.And("A message of \"This activity is already assigned to another course\" is included in" +
+                        " response body", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -194,12 +199,12 @@ this.ScenarioInitialize(scenarioInfo);
             
             public FixtureData()
             {
-                FinishedItemServiceTestsFeature.FeatureSetup();
+                ActivityServiceTestsFeature.FeatureSetup();
             }
             
             void System.IDisposable.Dispose()
             {
-                FinishedItemServiceTestsFeature.FeatureTearDown();
+                ActivityServiceTestsFeature.FeatureTearDown();
             }
         }
     }
