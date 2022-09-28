@@ -43,7 +43,7 @@ namespace Asimov.API.Competences.Services
             
             if (_competenceRepository.ExistByTitle(competence.Title))
                 throw new AppException
-                    ($"Competence {competence.Title} belongs to another Course");
+                    ("This competence belongs to another Course");
             
             try
             {
