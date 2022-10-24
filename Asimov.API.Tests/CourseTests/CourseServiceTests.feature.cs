@@ -24,7 +24,7 @@ namespace Asimov.API.Tests.CourseTests
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
         
-        private string[] _featureTags = ((string[])(null));
+        private static string[] featureTags = ((string[])(null));
         
         private Xunit.Abstractions.ITestOutputHelper _testOutputHelper;
         
@@ -41,7 +41,7 @@ namespace Asimov.API.Tests.CourseTests
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "CourseTests", "CourseServiceTests", "As a Developer\r\nI want to add new Course through API\r\nSo that It can be available" +
-                    " for applications.", ProgrammingLanguage.CSharp, ((string[])(null)));
+                    " for applications.", ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -51,27 +51,27 @@ namespace Asimov.API.Tests.CourseTests
             testRunner = null;
         }
         
-        public virtual void TestInitialize()
+        public void TestInitialize()
         {
         }
         
-        public virtual void TestTearDown()
+        public void TestTearDown()
         {
             testRunner.OnScenarioEnd();
         }
         
-        public virtual void ScenarioInitialize(TechTalk.SpecFlow.ScenarioInfo scenarioInfo)
+        public void ScenarioInitialize(TechTalk.SpecFlow.ScenarioInfo scenarioInfo)
         {
             testRunner.OnScenarioInitialize(scenarioInfo);
             testRunner.ScenarioContext.ScenarioContainer.RegisterInstanceAs<Xunit.Abstractions.ITestOutputHelper>(_testOutputHelper);
         }
         
-        public virtual void ScenarioStart()
+        public void ScenarioStart()
         {
             testRunner.OnScenarioStart();
         }
         
-        public virtual void ScenarioCleanup()
+        public void ScenarioCleanup()
         {
             testRunner.CollectScenarioErrors();
         }
@@ -94,26 +94,16 @@ namespace Asimov.API.Tests.CourseTests
         [Xunit.TraitAttribute("FeatureTitle", "CourseServiceTests")]
         [Xunit.TraitAttribute("Description", "Add Course")]
         [Xunit.TraitAttribute("Category", "course-adding")]
-        public virtual void AddCourse()
+        public void AddCourse()
         {
             string[] tagsOfScenario = new string[] {
                     "course-adding"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add Course", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add Course", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 10
     this.ScenarioInitialize(scenarioInfo);
 #line hidden
-            bool isScenarioIgnored = default(bool);
-            bool isFeatureIgnored = default(bool);
-            if ((tagsOfScenario != null))
-            {
-                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((this._featureTags != null))
-            {
-                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((isScenarioIgnored || isFeatureIgnored))
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
             {
                 testRunner.SkipScenario();
             }
@@ -123,38 +113,38 @@ namespace Asimov.API.Tests.CourseTests
 #line 6
     this.FeatureBackground();
 #line hidden
-                TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table15 = new TechTalk.SpecFlow.Table(new string[] {
                             "Id",
                             "Name",
                             "Description",
                             "Grade",
                             "State"});
-                table6.AddRow(new string[] {
+                table15.AddRow(new string[] {
                             "1",
                             "Algebra",
                             "A branch of Mathematics...",
                             "1ro",
                             "false"});
 #line 11
-        testRunner.When("A Post Request is sent to Course", ((string)(null)), table6, "When ");
+        testRunner.When("A Post Request is sent to Course", ((string)(null)), table15, "When ");
 #line hidden
 #line 14
         testRunner.Then("A Response with Status 200 is received in Course", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-                TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table16 = new TechTalk.SpecFlow.Table(new string[] {
                             "Id",
                             "Name",
                             "Description",
                             "Grade",
                             "State"});
-                table7.AddRow(new string[] {
+                table16.AddRow(new string[] {
                             "1",
                             "Algebra",
                             "A branch of Mathematics...",
                             "1ro",
                             "false"});
 #line 15
-        testRunner.And("A Course Resource is included in Response Body", ((string)(null)), table7, "And ");
+        testRunner.And("A Course Resource is included in Response Body", ((string)(null)), table16, "And ");
 #line hidden
             }
             this.ScenarioCleanup();
