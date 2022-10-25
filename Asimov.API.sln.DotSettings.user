@@ -1,6 +1,16 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=719a3d2c_002D2e12_002D44f3_002Db8a9_002D04ad3d3a6120/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="Test1" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
-  &lt;Project Location="C:\Users\William\Documents\Lightshot\CICLO 7\Diseño de Experimentos de Ingeniería de Software\tp1\Asimov-API-master\Asimov-API-master\Asimov.API.Tests" Presentation="&amp;lt;Asimov.API.Tests&amp;gt;" /&gt;&#xD;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=424d9e18_002Da6cd_002D4c90_002D90d4_002D7e1d8f96a718/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="All tests from CompetenceServiceTests.feature.cs" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;Or&gt;&#xD;
+    &lt;ProjectFile&gt;D82E0D7F-EBAB-46D6-B806-F0A6CE3684A1/d:CompetenceTests/f:CompetenceServiceTests.feature.cs&lt;/ProjectFile&gt;&#xD;
+    &lt;ProjectFile&gt;D82E0D7F-EBAB-46D6-B806-F0A6CE3684A1/d:AnnouncementTests/f:AnnouncementServiceTests.feature.cs&lt;/ProjectFile&gt;&#xD;
+    &lt;ProjectFile&gt;D82E0D7F-EBAB-46D6-B806-F0A6CE3684A1/d:CourseTests/f:CourseServiceTests.feature.cs&lt;/ProjectFile&gt;&#xD;
+    &lt;ProjectFile&gt;D82E0D7F-EBAB-46D6-B806-F0A6CE3684A1/d:DirectorTests/f:DirectorServiceTests.feature.cs&lt;/ProjectFile&gt;&#xD;
+    &lt;ProjectFile&gt;D82E0D7F-EBAB-46D6-B806-F0A6CE3684A1/d:TeacherTests/f:TeacherServiceTests.feature.cs&lt;/ProjectFile&gt;&#xD;
+    &lt;ProjectFile&gt;D82E0D7F-EBAB-46D6-B806-F0A6CE3684A1/d:ActivityTests/f:ActivityServiceTests.feature.cs&lt;/ProjectFile&gt;&#xD;
+  &lt;/Or&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
+	
+	
+	
 	<s:String x:Key="/Default/Housekeeping/UnitTestingMru/UnitTestRunner/SpawnedProcessesKnownList/=chromedriver_002Eexe/@EntryIndexedValue">KillOrphaned</s:String>
 	<s:String x:Key="/Default/Housekeeping/UnitTestingMru/UnitTestRunner/SpawnedProcessesKnownList/=conhost_002Eexe/@EntryIndexedValue">KillOrphaned</s:String></wpf:ResourceDictionary>
