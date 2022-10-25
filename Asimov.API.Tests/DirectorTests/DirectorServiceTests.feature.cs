@@ -24,7 +24,7 @@ namespace Asimov.API.Tests.DirectorTests
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
         
-        private string[] _featureTags = ((string[])(null));
+        private static string[] featureTags = ((string[])(null));
         
         private Xunit.Abstractions.ITestOutputHelper _testOutputHelper;
         
@@ -41,7 +41,7 @@ namespace Asimov.API.Tests.DirectorTests
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "DirectorTests", "DirectorServiceTests", "\tAs a Developer\r\n\tI want to register a new Director through API\r\n\tSo that It can " +
-                    "be available for applications.", ProgrammingLanguage.CSharp, ((string[])(null)));
+                    "be available for applications.", ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -51,27 +51,27 @@ namespace Asimov.API.Tests.DirectorTests
             testRunner = null;
         }
         
-        public virtual void TestInitialize()
+        public void TestInitialize()
         {
         }
         
-        public virtual void TestTearDown()
+        public void TestTearDown()
         {
             testRunner.OnScenarioEnd();
         }
         
-        public virtual void ScenarioInitialize(TechTalk.SpecFlow.ScenarioInfo scenarioInfo)
+        public void ScenarioInitialize(TechTalk.SpecFlow.ScenarioInfo scenarioInfo)
         {
             testRunner.OnScenarioInitialize(scenarioInfo);
             testRunner.ScenarioContext.ScenarioContainer.RegisterInstanceAs<Xunit.Abstractions.ITestOutputHelper>(_testOutputHelper);
         }
         
-        public virtual void ScenarioStart()
+        public void ScenarioStart()
         {
             testRunner.OnScenarioStart();
         }
         
-        public virtual void ScenarioCleanup()
+        public void ScenarioCleanup()
         {
             testRunner.CollectScenarioErrors();
         }
@@ -94,26 +94,16 @@ namespace Asimov.API.Tests.DirectorTests
         [Xunit.TraitAttribute("FeatureTitle", "DirectorServiceTests")]
         [Xunit.TraitAttribute("Description", "Sign-up Director")]
         [Xunit.TraitAttribute("Category", "director-register")]
-        public virtual void Sign_UpDirector()
+        public void Sign_UpDirector()
         {
             string[] tagsOfScenario = new string[] {
                     "director-register"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Sign-up Director", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Sign-up Director", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 10
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
-            bool isScenarioIgnored = default(bool);
-            bool isFeatureIgnored = default(bool);
-            if ((tagsOfScenario != null))
-            {
-                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((this._featureTags != null))
-            {
-                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((isScenarioIgnored || isFeatureIgnored))
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
             {
                 testRunner.SkipScenario();
             }
@@ -123,14 +113,14 @@ this.ScenarioInitialize(scenarioInfo);
 #line 6
  this.FeatureBackground();
 #line hidden
-                TechTalk.SpecFlow.Table table8 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table17 = new TechTalk.SpecFlow.Table(new string[] {
                             "FirstName",
                             "LastName",
                             "Age",
                             "Email",
                             "Password",
                             "Phone"});
-                table8.AddRow(new string[] {
+                table17.AddRow(new string[] {
                             "Ricardo",
                             "De la Cruz",
                             "42",
@@ -138,7 +128,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "Ss924@d#p_s",
                             "918274009"});
 #line 11
- testRunner.When("A Post Request is Sent", ((string)(null)), table8, "When ");
+ testRunner.When("A Post Request is Sent", ((string)(null)), table17, "When ");
 #line hidden
 #line 14
  testRunner.Then("A Response with Status 200 is Received", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
@@ -154,26 +144,16 @@ this.ScenarioInitialize(scenarioInfo);
         [Xunit.TraitAttribute("FeatureTitle", "DirectorServiceTests")]
         [Xunit.TraitAttribute("Description", "Sign-up Director with existing Email")]
         [Xunit.TraitAttribute("Category", "director-register-with-existing-email")]
-        public virtual void Sign_UpDirectorWithExistingEmail()
+        public void Sign_UpDirectorWithExistingEmail()
         {
             string[] tagsOfScenario = new string[] {
                     "director-register-with-existing-email"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Sign-up Director with existing Email", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Sign-up Director with existing Email", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 18
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
-            bool isScenarioIgnored = default(bool);
-            bool isFeatureIgnored = default(bool);
-            if ((tagsOfScenario != null))
-            {
-                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((this._featureTags != null))
-            {
-                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((isScenarioIgnored || isFeatureIgnored))
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
             {
                 testRunner.SkipScenario();
             }
@@ -183,14 +163,14 @@ this.ScenarioInitialize(scenarioInfo);
 #line 6
  this.FeatureBackground();
 #line hidden
-                TechTalk.SpecFlow.Table table9 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table18 = new TechTalk.SpecFlow.Table(new string[] {
                             "FirstName",
                             "LastName",
                             "Age",
                             "Email",
                             "Password",
                             "Phone"});
-                table9.AddRow(new string[] {
+                table18.AddRow(new string[] {
                             "Luis",
                             "Castillo",
                             "39",
@@ -198,16 +178,16 @@ this.ScenarioInitialize(scenarioInfo);
                             "Pls99281",
                             "992121083"});
 #line 19
- testRunner.Given("A Director is already stored", ((string)(null)), table9, "Given ");
+ testRunner.Given("A Director is already stored", ((string)(null)), table18, "Given ");
 #line hidden
-                TechTalk.SpecFlow.Table table10 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table19 = new TechTalk.SpecFlow.Table(new string[] {
                             "FirstName",
                             "LastName",
                             "Age",
                             "Email",
                             "Password",
                             "Phone"});
-                table10.AddRow(new string[] {
+                table19.AddRow(new string[] {
                             "Juanito",
                             "Castillo",
                             "40",
@@ -215,7 +195,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "Pls99281",
                             "982182734"});
 #line 22
- testRunner.When("A Post Request is Sent", ((string)(null)), table10, "When ");
+ testRunner.When("A Post Request is Sent", ((string)(null)), table19, "When ");
 #line hidden
 #line 25
  testRunner.Then("A Response with Status 400 is Received", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");

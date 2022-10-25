@@ -51,5 +51,10 @@ namespace Asimov.API.Activities.Persistence.Repositories
         {
             _context.Activities.Remove(activity);
         }
+
+        public bool ExistByValue(string value)
+        {
+            return _context.Activities.Any(p => p.Value == value);
+        }
     }
 }
